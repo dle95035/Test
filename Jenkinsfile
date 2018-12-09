@@ -11,7 +11,7 @@ def last_change_sets() {
 			for (int k = 0; k < files.size(); k++) {
 				def file = files[k]
 				def arr = file.path.split('/')
-				//println arr[0]
+				println arr[0]
 				list.add(arr[0])
 			}
 		}
