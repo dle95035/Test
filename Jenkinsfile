@@ -19,6 +19,7 @@ for (int i = 0; i < changeLogSets.size(); i++) {
 }
 
 node {
+   checkout(scm)
    smart()
    sh 'echo hello world'
 }
