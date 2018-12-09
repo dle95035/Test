@@ -12,7 +12,7 @@ def last_change_sets() {
 				def file = files[k]
 				def arr = file.path.split('/')
 				//println arr[0]
-				list << arr[0]
+				list << String(arr[0])
 			}
 		}
 	}
