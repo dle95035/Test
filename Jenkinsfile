@@ -1,5 +1,4 @@
 
-@NonCPS
 def last_change_sets() {
 	def changeLogSets = currentBuild.changeSets
 	def list = []
@@ -14,12 +13,12 @@ def last_change_sets() {
 				list.add(arr[0])
 			}
 		}
-		println list
 	}
+	return list
 }
 
 node {
    checkout(scm)
-   last_change_sets()
+   println last_change_sets()
    sh 'echo Done'
 }
