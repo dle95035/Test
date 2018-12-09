@@ -17,6 +17,6 @@ def last_change_sets() {
 
 node {
    checkout(scm)
-   smart()
+   last_change_sets()
    sh 'echo hello world'
 }
