@@ -1,6 +1,7 @@
 
 @NonCPS
 def last_change_sets() {
+    def list = []
 	def changeLogSets = currentBuild.changeSets
 	for (int i = 0; i < changeLogSets.size(); i++) {
 		def entries = changeLogSets[i].items
@@ -9,16 +10,18 @@ def last_change_sets() {
 			def files = new ArrayList(entry.affectedFiles)
 			for (int k = 0; k < files.size(); k++) {
 				def file = files[k]
-				println file.path
 				def arr = file.path.split('/')
-				println arr[0]
+				//println arr[0]
+				list.add(arr[0])
 			}
 		}
 	}
+	return list
 }
 
 node {
    checkout(scm)
-   last_change_sets()
-   sh 'echo hello world'
+   def projects = last_change_sets()
+   println projects
+   sh 'Done!!!'
 }
