@@ -3,9 +3,7 @@
 def last_change_sets() {
 	def changeLogSets = currentBuild.changeSets
 	def list = []
-	println "must be here..."
 	for (int i = 0; i < changeLogSets.size(); i++) {
-	    println "here..."
 		def entries = changeLogSets[i].items
 		for (int j = 0; j < entries.length; j++) {
 			def entry = entries[j]
@@ -13,7 +11,6 @@ def last_change_sets() {
 			for (int k = 0; k < files.size(); k++) {
 				def file = files[k]
 				def arr = file.path.split('/')
-				println arr[0]
 				list.add(arr[0])
 			}
 		}
