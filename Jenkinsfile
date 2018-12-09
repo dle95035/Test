@@ -16,12 +16,12 @@ def last_change_sets() {
 			}
 		}
 	}
-	return list
+	println list
 }
 
 node {
    checkout(scm)
-   def projects = last_change_sets()
-   println projects
+   //def projects = last_change_sets()
+   //println projects
    sh 'Done!!!'
 }
