@@ -1,7 +1,9 @@
 
-
+@NonCPS
 def smart() {
 def changeLogSets = currentBuild.changeSets
+println 'here is the size:'
+println changeLogSets.size()
 for (int i = 0; i < changeLogSets.size(); i++) {
     def entries = changeLogSets[i].items
     for (int j = 0; j < entries.length; j++) {
