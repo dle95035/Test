@@ -12,16 +12,18 @@ def last_change_sets() {
 				def file = files[k]
 				def arr = file.path.split('/')
 				//println arr[0]
-				list.add(arr[0])
+				list << arr[0]
 			}
 		}
 	}
-	println list
+	list.each {
+		println $it
+	}
 }
 
 node {
    checkout(scm)
    //def projects = last_change_sets()
    //println projects
-   sh 'Done!!!'
+   sh 'echo Done'
 }
