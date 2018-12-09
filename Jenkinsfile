@@ -2,6 +2,7 @@
 @NonCPS
 def last_change_sets() {
 	def changeLogSets = currentBuild.changeSets
+	def list = []
 	println "must be here..."
 	for (int i = 0; i < changeLogSets.size(); i++) {
 	    println "here..."
@@ -13,8 +14,10 @@ def last_change_sets() {
 				def file = files[k]
 				def arr = file.path.split('/')
 				println arr[0]
+				list.add(arr[0])
 			}
 		}
+		println list
 	}
 }
 
