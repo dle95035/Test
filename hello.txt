@@ -10,3 +10,4 @@ trigger2
 comeon
 hello
 lastchance
+lastchance
