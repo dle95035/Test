@@ -12,13 +12,11 @@ def last_change_sets() {
 				def file = files[k]
 				def arr = file.path.split('/')
 				//println arr[0]
-				list << String(arr[0])
+				list.add(arr[0])
 			}
 		}
 	}
-	list.each {
-		println $it
-	}
+	println list
 }
 
 node {
