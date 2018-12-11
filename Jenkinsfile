@@ -15,7 +15,7 @@ def get_cause() {
 	//return currentBuild.rawBuild.getCauses()
 	//return currentBuild.causes[0]
 	//return ${BUILD_CAUSE}
-    currentBuild.rawBuild.getCauses().toString()
+    currentBuild.rawBuild.getBuildCauses().toString()
 }
 
 node {
