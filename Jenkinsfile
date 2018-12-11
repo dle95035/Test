@@ -1,3 +1,6 @@
+import java.nio.file.*;
+
+@NonCPS
 def last_change_sets() {
     def list = []
     for (changeSets in currentBuild.changeSets) {
@@ -10,17 +13,18 @@ def last_change_sets() {
     }
     return list
 }
-
+@NonCPS
 def get_cause() {
-	//return currentBuild.rawBuild.getCauses()
-	//return currentBuild.causes[0]
-	return ${BUILD_CAUSE}
+    currentBuild.getBuildCauses().toString()
 }
 
 node {
    checkout(scm)
-   println last_change_sets()
-   println get_cause()
+   def aci = last_change_sets()
+   println aci
+   echo get_cause()
    sh 'echo Done'
+   sh 'ls -la'
+   // boolean isDir = pFile.isDirectory()
 }
 
