@@ -21,6 +21,6 @@ node {
    println last_change_sets()
    echo get_cause()
    sh 'echo Done'
-   sh 'pwd'
+   sh 'ls -la'
 }
 
