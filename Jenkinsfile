@@ -21,7 +21,7 @@ def get_cause() {
 node {
    checkout(scm)
    def aci = last_change_sets()
-   if ( Files.isDirectory("dir1")) {
+   if ( (new File("dir1")).isDirectory() ) {
       println "it is a directory"
    }
    echo get_cause()
