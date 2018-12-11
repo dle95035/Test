@@ -22,7 +22,7 @@ node {
    checkout(scm)
    println last_change_sets()
    echo get_cause()
-   echo currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)
+   echo currentBuild.rawBuild.getCause(get_cause)
    sh 'echo Done'
 }
 
