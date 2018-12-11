@@ -10,17 +10,18 @@ def last_change_sets() {
     }
     return list
 }
-
+@NonCPS
 def get_cause() {
 	//return currentBuild.rawBuild.getCauses()
 	//return currentBuild.causes[0]
-	return ${BUILD_CAUSE}
+	//return ${BUILD_CAUSE}
+    currentBuild.rawBuild.getCauses().toString()
 }
 
 node {
    checkout(scm)
    println last_change_sets()
-   println get_cause()
+   echo get_cause()
    sh 'echo Done'
 }
 
