@@ -18,8 +18,9 @@ def get_cause() {
 
 node {
    checkout(scm)
-   echo last_change_sets()
+   println last_change_sets()
    echo get_cause()
    sh 'echo Done'
+   sh 'pwd'
 }
 
