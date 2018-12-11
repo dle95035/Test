@@ -11,9 +11,14 @@ def last_change_sets() {
     return list
 }
 
+def get_cause() {
+	return currentBuild.rawBuild.getCauses()
+}
+
 node {
    checkout(scm)
    println last_change_sets()
+   println get_cause()
    sh 'echo Done'
 }
 
