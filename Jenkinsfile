@@ -13,7 +13,8 @@ def last_change_sets() {
 
 def get_cause() {
 	//return currentBuild.rawBuild.getCauses()
-	return currentBuild.causes[0]
+	//return currentBuild.causes[0]
+	return ${BUILD_CAUSE}
 }
 
 node {
