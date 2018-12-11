@@ -1,4 +1,4 @@
-
+@NonCPS
 def last_change_sets() {
     def list = []
     for (changeSets in currentBuild.changeSets) {
@@ -13,16 +13,14 @@ def last_change_sets() {
 }
 @NonCPS
 def get_cause() {
-	//return currentBuild.rawBuild.getCauses()
-	//return currentBuild.causes[0]
-	//return ${BUILD_CAUSE}
     currentBuild.getBuildCauses().toString()
 }
 
 node {
    checkout(scm)
-   println last_change_sets()
+   echo last_change_sets()
    echo get_cause()
    sh 'echo Done'
+   sh 'pwd'
 }
 
