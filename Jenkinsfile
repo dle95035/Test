@@ -15,13 +15,14 @@ def get_cause() {
 	//return currentBuild.rawBuild.getCauses()
 	//return currentBuild.causes[0]
 	//return ${BUILD_CAUSE}
-    currentBuild.rawBuild.getBuildCauses().toString()
+    currentBuild.rawBuild.getCauses().toString()
 }
 
 node {
    checkout(scm)
    println last_change_sets()
    echo get_cause()
+   echo currentBuild.buildCauses
    sh 'echo Done'
 }
 
