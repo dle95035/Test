@@ -22,5 +22,6 @@ node {
    echo get_cause()
    sh 'echo Done'
    sh 'ls -la'
+   # boolean isDir = pFile.isDirectory()
 }
 
