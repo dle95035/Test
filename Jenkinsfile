@@ -1,4 +1,4 @@
-import java.nio.file.*;
+import jenkins.model.*
 
 @NonCPS
 def last_change_sets() {
