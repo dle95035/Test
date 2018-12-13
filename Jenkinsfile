@@ -18,7 +18,7 @@ def get_cause() {
 }
 
 node {
-   checkout scm
+   checkout()
    def aci = last_change_sets()
    println aci
    echo get_cause()
