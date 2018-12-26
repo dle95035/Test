@@ -28,8 +28,6 @@ def get_cause() {
     currentBuild.getBuildCauses().toString()
 }
 
-
-
 node {
    checkout scm
    def aci = last_change_sets()
@@ -42,6 +40,6 @@ node {
    
    mail (to: 'dle95035@yahoo.com',
          subject: "This is from Jenkins",
-         body: "Testing!!!")
+         body: "Testing!!!" + cpl)
 }
 
