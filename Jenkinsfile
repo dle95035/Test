@@ -1,23 +1,12 @@
 
 @NonCPS
 getCulprits(build){
-    culprits = []
-
-    if(build.properties.changeSets[0] != null){
-       for (changeSet in build.properties.changeSets){
-          for (change in changeSet){
-              GitChangeSetObj git_change_set = new GitChangeSetObj(
-                  build.displayName.toString(),
-                  change.id,
-                  change.author,
-                  change.authorEmail,
-                  change.comment
-              )
-              culprits.add(git_change_set)
-          }
-       }
-    }
-
+    def culprits = []
+    for (changeSets in build.properties.changeSets) {
+        for (items in changeSets.items) {
+			culprints.add(items.authorEmail)
+		}
+	}
     return culprits
 }
 
