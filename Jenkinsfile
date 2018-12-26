@@ -33,6 +33,7 @@ node {
    def aci = last_change_sets()
    println aci
    def cpl = getCulprits(currentBuild)
+   println cpl
    echo get_cause()
    sh 'echo Done'
    sh 'ls -la'
