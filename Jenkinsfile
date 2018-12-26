@@ -1,9 +1,8 @@
-import java.nio.file.*;
 
 @NonCPS
 def last_change_sets() {
     def list = []
-    for (changeSets in currentBuild.changeSets) {
+    for (changeSets in currentBuild.properties.changeSets) {
         for (items in changeSets.items) {
             for (files in items.affectedFiles) {
                 list.add( files.path.split('/')[0] )
@@ -19,7 +18,7 @@ def get_cause() {
 }
 
 node {
-   checkout(scm)
+   checkout scm
    def aci = last_change_sets()
    println aci
    echo get_cause()
