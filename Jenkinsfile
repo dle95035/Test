@@ -4,7 +4,7 @@ def getCulprits(build){
     def culprits = []
     for (changeSets in build.properties.changeSets) {
         for (items in changeSets.items) {
-			culprints.add(items.authorEmail)
+			culprits.add(items.authorEmail)
 		}
 	}
     return culprits
