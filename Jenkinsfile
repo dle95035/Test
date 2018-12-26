@@ -28,6 +28,8 @@ def get_cause() {
     currentBuild.getBuildCauses().toString()
 }
 
+
+
 node {
    checkout scm
    def aci = last_change_sets()
@@ -37,5 +39,9 @@ node {
    echo get_cause()
    sh 'echo Done'
    sh 'ls -la'
+   
+   mail (to: 'dle95035@yahoo.com',
+         subject: "This is from Jenkins",
+         body: "Testing!!!");
 }
 
