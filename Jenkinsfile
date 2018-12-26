@@ -40,6 +40,6 @@ node {
    
    mail (to: 'dle95035@yahoo.com',
          subject: "This is from Jenkins",
-         body: "Testing!!!" + cpl.toString() )
+         body: "Testing!!!" + cpl)
 }
 
