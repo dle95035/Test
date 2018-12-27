@@ -17,7 +17,7 @@ class GitChangeSetObj implements Serializable {
 }
 
 @NonCPS
-getCulprits(build){
+def getCulprits(build){
     culprits = []
 
     if(build.properties.changeSets[0] != null){
@@ -51,9 +51,19 @@ def last_change_sets() {
     }
     return list
 }
+
+def get_emails(culprit_list) {
+  def list = []
+  for (culprit in culprit_list){ 
+    list.add(culprit.email)
+  } 
+  return list
+}
+
 @NonCPS
 def get_cause() {
-    currentBuild.getBuildCauses().toString()
+    
+    currentBuild.getBuildCauses().toString() 
 }
 
 node {
@@ -63,7 +73,7 @@ node {
 
    println "Culprits list:"
    def cpl = getCulprits(currentBuild)
-   println cpl
+   println get_emails(cpl)
    echo get_cause()
    sh 'echo Done'
    sh 'ls -la'
