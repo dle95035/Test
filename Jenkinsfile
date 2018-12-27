@@ -1,12 +1,40 @@
 
+class GitChangeSetObj implements Serializable {
+    String build_id
+    String commit_id
+    String author
+    String email
+    String comment
+
+    GitChangeSetObj(build_id, commit_id, author, email, comment){
+        this.build_id = build_id
+        this.commit_id = commit_id
+        this.author = author
+        this.email = email
+        this.comment = comment
+    }
+
+}
+
 @NonCPS
-def getCulprits(build){
-    def culprits = []
-    for (changeSets in build.properties.changeSets) {
-        for (items in changeSets.items) {
-			culprits.add(items.authorEmail)
-		}
-	}
+getCulprits(build){
+    culprits = []
+
+    if(build.properties.changeSets[0] != null){
+       for (changeSet in build.properties.changeSets){
+          for (change in changeSet){
+              GitChangeSetObj git_change_set = new GitChangeSetObj(
+                  build.displayName.toString(),
+                  change.id,
+                  change.author,
+                  change.authorEmail,
+                  change.comment
+              )
+              culprits.add(git_change_set)
+          }
+       }
+    }
+
     return culprits
 }
 
@@ -32,6 +60,8 @@ node {
    checkout scm
    def aci = last_change_sets()
    println aci
+
+   println "Culprits list:"
    def cpl = getCulprits(currentBuild)
    println cpl
    echo get_cause()
