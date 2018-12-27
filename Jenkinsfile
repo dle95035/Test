@@ -20,7 +20,7 @@ class GitChangeSetObj implements Serializable {
 def getCulprits(build){
     culprits = []
 
-    if(build.properties.changeSets[0] != null){
+    //if(build.properties.changeSets[0] != null){
        for (changeSet in build.properties.changeSets){
           for (change in changeSet){
               GitChangeSetObj git_change_set = new GitChangeSetObj(
@@ -33,7 +33,7 @@ def getCulprits(build){
               culprits.add(git_change_set)
           }
        }
-    }
+    //}
 
     return culprits
 }
