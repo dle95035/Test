@@ -31,6 +31,7 @@ def getCulprits(build){
                   change.comment
               )
               culprits.add(git_change_set)
+              println change.author
           }
        }
     //}
