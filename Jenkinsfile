@@ -81,7 +81,7 @@ node {
    println get_emails(cpl)
    
    echo 'user id:'
-   echo get_cause()
+   echo currentBuild.changeSets
    
    sh 'echo Done'
    sh 'ls -la'
