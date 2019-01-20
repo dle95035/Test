@@ -56,7 +56,7 @@ def last_change_sets() {
 def get_emails(culprit_list) {
   def list = []
   for (culprit in culprit_list){ 
-    list.add(culprit.author + ":" + culprit.email)
+    list.add(culprit.author + ":" + culprit.email + ":" + culprit.id)
   } 
   return list
 }
@@ -81,7 +81,7 @@ node {
    println get_emails(cpl)
    
    echo 'user id:'
-   echo currentBuild.changeSets
+   //echo currentBuild.changeSets
    
    sh 'echo Done'
    sh 'ls -la'
