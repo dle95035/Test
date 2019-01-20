@@ -62,8 +62,13 @@ def get_emails(culprit_list) {
 }
 
 @NonCPS
-def get_cause() {
+def get_userId() {
     return currentBuild.getBuildCauses()[0].userId
+}
+
+@NonCPS
+def get_cause() {
+    return currentBuild.buildCauses
 }
 
 @NonCPS
