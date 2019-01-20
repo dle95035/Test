@@ -86,11 +86,12 @@ pipeline {
     stages {
 	    stage ("Check") {
 			steps {
-				// want to exit success
-				script {currentBuild.result = 'SUCCESS'} 
+				
 				 
 				// Abort the build, skipping subsequent stages
 				error("Invalid target environment")
+				// want to exit success
+				script {currentBuild.result = 'SUCCESS'} 
 			}
 		}
         stage('Print UID') { 
