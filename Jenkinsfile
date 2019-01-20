@@ -63,7 +63,7 @@ def get_emails(culprit_list) {
 
 @NonCPS
 def get_cause() {
-    return currentBuild.getCauses()
+    return currentBuild.getBuildCauses()[0].userId
 }
 
 @NonCPS
@@ -81,7 +81,7 @@ pipeline {
         stage('Print UID') { 
             steps {
                 script {
-                   echo "${userId}"
+                   echo get_cause()
                 }
             }
         }
