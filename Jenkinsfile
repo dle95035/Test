@@ -71,20 +71,36 @@ def getBuildUser() {
     return currentBuild.getBuildCauses(Cause.UserIdCause).getUserId()
 }
 
-node {
-   checkout scm
+pipeline {
+
+    agent any
+    environment {
+        def userId = "${env.UID}";
+    }
+    stages {
+        stage('Print UID') { 
+            steps {
+                script {
+                   echo "${userId}"
+                }
+            }
+        }
+    }
+}
+//node {
+//   checkout scm
    //def aci = last_change_sets()
    //println aci
 
-   println "Culprits list:"
-   def cpl = getCulprits(currentBuild)
-   println get_emails(cpl)
+//   println "Culprits list:"
+//   def cpl = getCulprits(currentBuild)
+//   println get_emails(cpl)
    
-   echo 'user id:'
-   echo getBuildUser()
+//   echo 'user id:'
+//   echo currentBuild.getBuildCauses(hudson.model.Cause$UserIdCause)
    
-   sh 'echo Done'
-   sh 'ls -la'
+//   sh 'echo Done'
+//   sh 'ls -la'
    
-}
+//}
 
