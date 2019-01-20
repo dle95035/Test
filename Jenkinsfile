@@ -68,7 +68,9 @@ def get_userId() {
 
 @NonCPS
 def get_cause() {
-    return currentBuild.buildCauses
+    
+    bc = currentBuild.getBuildCauses()
+    return "hello "
 }
 
 @NonCPS
