@@ -63,7 +63,7 @@ def get_emails(culprit_list) {
 
 @NonCPS
 def get_cause() {
-    currentBuild.getBuildCauses().getUserId()
+    currentBuild.getBuildCauses()
 }
 
 @NonCPS
@@ -81,7 +81,7 @@ node {
    println get_emails(cpl)
    
    echo 'user id:'
-   echo getBuildUser()
+   echo get_cause()
    
    sh 'echo Done'
    sh 'ls -la'
