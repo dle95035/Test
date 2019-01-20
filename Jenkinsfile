@@ -63,7 +63,7 @@ def get_emails(culprit_list) {
 
 @NonCPS
 def get_cause() {
-    currentBuild.getBuildCauses().userId.toString() 
+    currentBuild.getBuildCauses().userId
 }
 
 node {
@@ -74,12 +74,12 @@ node {
    println "Culprits list:"
    def cpl = getCulprits(currentBuild)
    println get_emails(cpl)
+   
+   echo 'user id:'
    echo get_cause()
+   
    sh 'echo Done'
    sh 'ls -la'
    
-   mail (to: 'dle95035@yahoo.com',
-         subject: "This is from Jenkins",
-         body: "Testing!!!" + get_emails(cpl))
 }
 
