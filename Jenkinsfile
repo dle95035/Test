@@ -84,6 +84,12 @@ pipeline {
         def userId = "${env.UID}";
     }
     stages {
+	    stage ("Check") {
+			steps {
+				// Abort the build, skipping subsequent stages
+				error("Invalid target environment")
+			}
+		}
         stage('Print UID') { 
             steps {
                 script {
