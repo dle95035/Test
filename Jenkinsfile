@@ -63,7 +63,7 @@ def get_emails(culprit_list) {
 
 @NonCPS
 def get_cause() {
-    currentBuild.getBuildCauses().userId
+    currentBuild.getBuildCauses().getUserId()
 }
 
 node {
