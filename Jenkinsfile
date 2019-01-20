@@ -69,8 +69,8 @@ def get_cause() {
 
 node {
    checkout scm
-   def aci = last_change_sets()
-   println aci
+   //def aci = last_change_sets()
+   //println aci
 
    println "Culprits list:"
    def cpl = getCulprits(currentBuild)
