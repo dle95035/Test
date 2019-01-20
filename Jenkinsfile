@@ -66,6 +66,11 @@ def get_cause() {
     currentBuild.getBuildCauses().getUserId()
 }
 
+@NonCPS
+def getBuildUser() {
+    return currentBuild.rawBuild.getCause(Cause.UserIdCause).getUserId()
+}
+
 node {
    checkout scm
    //def aci = last_change_sets()
@@ -76,7 +81,7 @@ node {
    println get_emails(cpl)
    
    echo 'user id:'
-   echo get_cause()
+   echo getBuildUser()
    
    sh 'echo Done'
    sh 'ls -la'
