@@ -67,42 +67,44 @@ def get_userId() {
 }
 
 @NonCPS
-def get_cause() {
-    
-    currentBuild.rawBuild.getCauses()
-}
-
-@NonCPS
 def getBuildUser() {
     return currentBuild.getBuildCauses(Cause.UserIdCause).getUserId()
 }
 
-pipeline {
-
-    agent any
-    environment {
-        def userId = "${env.UID}";
-    }
-    stages {
-	    stage ("Check") {
-			steps {
-				
-				 
-				// Abort the build, skipping subsequent stages
-				error("Invalid target environment")
-				// want to exit success
-				script {currentBuild.result = 'SUCCESS'} 
-			}
-		}
-        stage('Print UID') { 
-            steps {
-                script {
-                   echo get_cause()
-                }
-            }
-        }
-    }
+def get_cause() {
+    currentBuild.getBuildCauses().toString()
 }
+
+node {
+	echo "Hello world"
+}
+
+//pipeline {
+//
+//    agent any
+//    environment {
+//        def userId = "${env.UID}";
+//    }
+//    stages {
+//	    stage ("Check") {
+//			steps {
+//				// want to exit success
+//				script {currentBuild.result = 'SUCCESS'} 
+//				 
+//				// Abort the build, skipping subsequent stages
+//				error("Invalid target environment")
+//				
+//			}
+//		}
+//        stage('Print UID') { 
+//            steps {
+//                script {
+//                   echo get_cause()
+//                }
+//            }
+//        }
+//    }
+//}
 //node {
 //   checkout scm
    //def aci = last_change_sets()
