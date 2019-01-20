@@ -56,7 +56,7 @@ def last_change_sets() {
 def get_emails(culprit_list) {
   def list = []
   for (culprit in culprit_list){ 
-    list.add(culprit.author + ":" + culprit.email + ":" + culprit.id)
+    list.add(culprit.author + ":" + culprit.email)
   } 
   return list
 }
