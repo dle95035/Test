@@ -137,14 +137,13 @@ pipeline {
 				// Abort the build, skipping subsequent stages
 				//error("Invalid target environment")
 				//cause()
-				println find_file("testdir211.txt")
-				
+				//println find_file("testdir211.txt")
 				
 			}
 		}
         stage('Print UID') { 
 			when {
-				branch 'master'		
+				not {branch 'master'}		
 			}
             steps {
                 script {
