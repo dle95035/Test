@@ -72,7 +72,7 @@ def getBuildUser() {
 }
 
 def get_cause() {
-    currentBuild.getBuildCauses()..getShortDescription().toString()
+    currentBuild.getBuildCauses().getShortDescription().toString()
 }
 
 node {
