@@ -124,7 +124,6 @@ pipeline {
     agent any
     environment {
         def userId = "${env.UID}";
-		SKIP_ALL = find_file("version.sbt")
     }
     stages {
 	    stage ("Check") {
@@ -145,9 +144,7 @@ pipeline {
 		}
         stage('Print UID') { 
 			when {
-				allOf {
-					expression { SKIP_ALL == false }
-				}			
+				branch 'master'		
 			}
             steps {
                 script {
