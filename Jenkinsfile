@@ -88,7 +88,7 @@ def get_cause() {
 }
 
 def cause() {
-	def cc = currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)
+	def cc = currentBuild.rawBuild.getCause()
 	return cc
 }
 node {
