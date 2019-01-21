@@ -72,7 +72,7 @@ def getBuildUser() {
 }
 
 def get_cause() {
-    def buildCauses = currentBuild.getBuildCauses()
+    def buildCauses = currentBuild.getCauses()
     for ( buildCause in buildCauses ) {
         if (buildCause != null) {
             def causeDescription = buildCause.getShortDescription()
