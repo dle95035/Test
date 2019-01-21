@@ -90,7 +90,7 @@ def get_cause() {
 def cause() {
 	def causes = currentBuild.getBuildCauses()
 	for (cause in causes) {
-		println cause.class.toString()
+		println cause.toString()
 	}
 }
 node {
