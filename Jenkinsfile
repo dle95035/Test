@@ -94,37 +94,37 @@ def cause() {
 		println cause["shortDescription"]
 	}
 }
-node {
-	echo "Hello world"
-	cause()
-}
-
-//pipeline {
-//
-//    agent any
-//    environment {
-//        def userId = "${env.UID}";
-//    }
-//    stages {
-//	    stage ("Check") {
-//			steps {
-//				// want to exit success
-//				script {currentBuild.result = 'SUCCESS'} 
-//				 
-//				// Abort the build, skipping subsequent stages
-//				error("Invalid target environment")
-//				
-//			}
-//		}
-//        stage('Print UID') { 
-//            steps {
-//                script {
-//                   echo get_cause()
-//                }
-//            }
-//        }
-//    }
+//node {
+//	echo "Hello world"
+//	cause()
 //}
+
+pipeline {
+
+    agent any
+    environment {
+        def userId = "${env.UID}";
+    }
+    stages {
+	    stage ("Check") {
+			steps {
+				// want to exit success
+				script {currentBuild.result = 'SUCCESS'} 
+				 
+				// Abort the build, skipping subsequent stages
+				//error("Invalid target environment")
+				cause()
+			}
+		}
+        stage('Print UID') { 
+            steps {
+                script {
+                   echo get_cause()
+                }
+            }
+        }
+    }
+}
 //node {
 //   checkout scm
    //def aci = last_change_sets()
