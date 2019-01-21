@@ -56,10 +56,7 @@ def last_change_sets() {
 def find_user(userName) {
     for (changeSet in currentBuild.changeSets) {
         for ( change in changeSet ) {
-			println change.author 
-			println userName
 			if ( change.author.toString() == userName ) {
-				println "why not here?"
 				return true
 			}
         }
@@ -138,7 +135,7 @@ pipeline {
     agent any
     environment {
         def userId = "${env.UID}";
-		SKIP_ALL = find_file("version.sbt")
+		SKIP_ALL = find_file("version.sbt") || find_user("dle95035")
     }
     stages {
 	    stage ("Check") {
