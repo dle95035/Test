@@ -141,7 +141,7 @@ pipeline {
 			}
 		}
         stage('Print UID') { 
-			when { not { SKIP_ALL } }
+			when { expression { SKIP_ALL == false } }
             steps {
                 script {
 					sh 'echo done'
