@@ -128,7 +128,7 @@ pipeline {
     }
     stages {
 	    stage ("Check") {
-			when {  branch 'refs/remotes/origin/master'  }
+			expression { SKIP_ALL == false }
 			steps {
 				// want to exit success
 				script {currentBuild.result = 'SUCCESS'} 
@@ -142,9 +142,10 @@ pipeline {
 			}
 		}
         stage('Print UID') { 
-			when {
-				branch 'refs/remotes/origin/master'
-            }
+			allOf {
+				not { branch 'master' }
+				expression { SKIP_ALL == false }
+			}
             steps {
                 script {
 					sh 'echo done'
