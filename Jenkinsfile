@@ -53,6 +53,18 @@ def last_change_sets() {
     return list
 }
 
+def find_user(userName) {
+    def list = []
+    for (changeSet in currentBuild.changeSets) {
+        for ( change in changeSet ) {
+			if ( change.author == userName ) {
+				return true
+			}
+        }
+    }
+    return false
+}
+
 def get_file_name(fullFileName) {
 	return fullFileName.substring(fullFileName.lastIndexOf("/")+1)
 }
@@ -129,7 +141,8 @@ pipeline {
     stages {
 	    stage ("Check") {
 			steps {
-
+				println find_user("dle95035")
+				
 				// want to exit success
 				script {currentBuild.result = 'SUCCESS'} 
 				 
