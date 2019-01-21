@@ -88,7 +88,7 @@ def get_cause() {
 }
 
 def cause() {
-	def cc = currentBuild.rawBuild.getCause()
+	def cc = currentBuild.rawBuild.getCause(java.lang.Class)
 	return cc
 }
 node {
