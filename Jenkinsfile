@@ -146,7 +146,7 @@ pipeline {
                 //allOf {
                 //    branch 'master'
                 //    //expression { SKIP_ALL == false }
-                }
+                //}
             }
             steps {
                 script {
