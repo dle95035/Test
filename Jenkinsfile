@@ -53,6 +53,19 @@ def last_change_sets() {
     return list
 }
 
+def find_file(file_name){
+	def list = []
+    for (changeSets in currentBuild.changeSets) {
+        for (items in changeSets.items) {
+            for (files in items.affectedFiles) {
+                list.add( files.path..substring(lStr.lastIndexOf("/")) )
+            }
+        }
+
+    }
+	return list
+}
+
 def get_emails(culprit_list) {
   def list = []
   for (culprit in culprit_list){ 
@@ -114,7 +127,8 @@ pipeline {
 				 
 				// Abort the build, skipping subsequent stages
 				//error("Invalid target environment")
-				cause()
+				//cause()
+				println find_file("version.sbt")
 			}
 		}
         stage('Print UID') { 
