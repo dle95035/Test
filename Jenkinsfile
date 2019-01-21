@@ -63,10 +63,9 @@ def find_file(file_name){
     for (changeSets in currentBuild.changeSets) {
         for (items in changeSets.items) {
             for (file in items.affectedFiles) {
-				if ( ${file_name} == get_file_name(file.path) ) {
+				if ( file_name == get_file_name(file.path) ) {
 					return true
 				}
-                //list.add( fullFileName.substring(fullFileName.lastIndexOf("/")+1) )
             }
         }
     }
