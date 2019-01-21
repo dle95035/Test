@@ -88,12 +88,12 @@ def get_cause() {
 }
 
 def cause() {
-	def cc = currentBuild.rawBuild.getCause(java.lang.Class)
+	def cc = currentBuild.getBuildCauses()
 	return cc
 }
 node {
 	echo "Hello world"
-	echo cause()
+	cause()
 }
 
 //pipeline {
