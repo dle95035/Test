@@ -59,6 +59,7 @@ def find_user(userName) {
 			println change.author 
 			println userName
 			if ( change.author == userName ) {
+				println "why not here?"
 				return true
 			}
         }
