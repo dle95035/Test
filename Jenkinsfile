@@ -138,7 +138,7 @@ pipeline {
     environment {
         def userId = "${env.UID}";
 		BUILD_USER = "somebody"
-		SKIP_ALL = check("verision.sbt", BUILD_USER)
+		SKIP_ALL = check("version.sbt", BUILD_USER)
     }
     stages {
 	    stage ("Check") {
@@ -158,8 +158,8 @@ pipeline {
         stage('Print UID') { 
 			when {
 				allOf {
-					not {branch 'PR-*'}
-					not {branch 'master'}
+					//not {branch 'PR-*'}
+					//not {branch 'master'}
 					expression {SKIP_ALL == 'false'} 
 				}			
 			}
