@@ -60,7 +60,7 @@ def find_file(file_name){
         for (items in changeSets.items) {
             for (files in items.affectedFiles) {
 				fullFileName = files.path
-                list.add( fullFileName.substring(fullFileName.lastIndexOf("/")-1) )
+                list.add( fullFileName.substring(fullFileName.lastIndexOf("/")+1) )
             }
         }
 
