@@ -146,7 +146,7 @@ pipeline {
 			when {
 				allOf {
 					not {branch 'master'}
-					expression {SKIP_ALL == 'false'}
+					expression {SKIP_ALL == 'false'} 
 				}			
 			}
             steps {
