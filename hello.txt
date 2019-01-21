@@ -1,1 +1,26 @@
 I want to trigger the build
+<<<<<<< HEAD
+=======
+added this one line
+third line
+append a line
+this is a branch pull request
+hello this is from original copy.
+trigger
+trigger1
+trigger2
+comeon
+hello
+lastchance
+lastchance
+lastchance
+test
+abc
+hell
+abc
+a
+a
+hello
+hello
+avc
+>>>>>>> 27f9e06987b0bda611ec678567c3f8a5c2889997
