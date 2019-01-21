@@ -128,10 +128,8 @@ pipeline {
     }
     stages {
 	    stage ("Check") {
-
 			steps {
-				
-				
+
 				// want to exit success
 				script {currentBuild.result = 'SUCCESS'} 
 				 
@@ -145,6 +143,7 @@ pipeline {
         stage('Print UID') { 
 			when {
 				allOf {
+					not { branch 'PR-*' }
 					not {branch 'master'}
 					expression {SKIP_ALL == 'false'} 
 				}			
