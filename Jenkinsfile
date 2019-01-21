@@ -56,7 +56,8 @@ def last_change_sets() {
 def find_user(userName) {
     for (changeSet in currentBuild.changeSets) {
         for ( change in changeSet ) {
-			println change.author + ":" + userName
+			println change.author 
+			println userName
 			if ( change.author == userName ) {
 				return true
 			}
