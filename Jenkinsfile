@@ -129,7 +129,7 @@ pipeline {
 	    stage ("Check") {
 
 			steps {
-				echo SKIP_ALL
+				
 				
 				// want to exit success
 				script {currentBuild.result = 'SUCCESS'} 
