@@ -139,7 +139,8 @@ pipeline {
     agent any
     environment {
         def userId = "${env.UID}";
-		SKIP_ALL = check("verision.sbt", "notme")
+		BUILD_USER = "dle95035"
+		SKIP_ALL = check("verision.sbt", BUILD_USER)
     }
     stages {
 	    stage ("Check") {
