@@ -72,7 +72,7 @@ def getBuildUser() {
 }
 
 def get_cause() {
-    def buildCauses = currentBuild.getCauses()
+    def buildCauses = currentBuild.rawBuild.getCauses()
     for ( buildCause in buildCauses ) {
         if (buildCause != null) {
             def causeDescription = buildCause.getShortDescription()
@@ -87,9 +87,13 @@ def get_cause() {
     }
 }
 
+def cause() {
+	def cc = currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)
+	return cc
+}
 node {
 	echo "Hello world"
-	get_cause()
+	echo cause()
 }
 
 //pipeline {
