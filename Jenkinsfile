@@ -120,6 +120,7 @@ pipeline {
         stage('Print UID') { 
             steps {
                 script {
+					sh 'echo done'
                    //echo get_cause()
                 }
             }
