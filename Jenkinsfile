@@ -135,7 +135,7 @@ pipeline {
     agent any
     environment {
         def userId = "${env.UID}";
-		SKIP_ALL = find_file("version.sbt") || find_user("dle95035")
+		SKIP_ALL = (find_file("version.sbt") || find_user("dle95035"))
     }
     stages {
 	    stage ("Check") {
