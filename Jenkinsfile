@@ -53,14 +53,17 @@ def last_change_sets() {
     return list
 }
 
+def get_file_name(fullFileName) {
+	return fullFileName.substring(fullFileName.lastIndexOf("/")+1)
+}
+
 def find_file(file_name){
 	def list = []
 	def fullFileName = ""
     for (changeSets in currentBuild.changeSets) {
         for (items in changeSets.items) {
-            for (files in items.affectedFiles) {
-				fullFileName = files.path
-				if ( ${file_name} == fullFileName.substring(fullFileName.lastIndexOf("/")+1)) {}
+            for (file in items.affectedFiles) {
+				if ( ${file_name} == get_file_name(file.path) {
 					return true
 				}
                 //list.add( fullFileName.substring(fullFileName.lastIndexOf("/")+1) )
