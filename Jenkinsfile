@@ -124,6 +124,7 @@ pipeline {
     agent any
     environment {
         def userId = "${env.UID}";
+		SKIP_ALL = find_file("version.sbt")
     }
     stages {
 	    stage ("Check") {
@@ -135,9 +136,12 @@ pipeline {
 				//error("Invalid target environment")
 				//cause()
 				println find_file("testdir211.txt")
+				
+				
 			}
 		}
         stage('Print UID') { 
+			when { not { SKIP_ALL } }
             steps {
                 script {
 					sh 'echo done'
