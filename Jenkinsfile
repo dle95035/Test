@@ -69,11 +69,9 @@ def get_file_name(fullFileName) {
 }
 
 def find_file(file_name){
-	def list = []
-	def fullFileName = ""
-    for (changeSets in currentBuild.changeSets) {
-        for (items in changeSets.items) {
-            for (file in items.affectedFiles) {
+    for (changeSet in currentBuild.changeSets) {
+        for (item in changeSet.items) {
+            for (file in item.affectedFiles) {
 				if ( file_name == get_file_name(file.path) ) {
 					return true
 				}
