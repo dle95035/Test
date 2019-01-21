@@ -83,6 +83,10 @@ def find_file(file_name){
 	return false
 }
 
+def check(fileName, userName) {
+	return (find_file(fileName) || find_user(userName))
+}
+
 def get_emails(culprit_list) {
   def list = []
   for (culprit in culprit_list){ 
@@ -135,7 +139,7 @@ pipeline {
     agent any
     environment {
         def userId = "${env.UID}";
-		SKIP_ALL = (find_file("version.sbt") || find_user("dle95035"))
+		SKIP_ALL = check("verision.sbt", "dle95035")
     }
     stages {
 	    stage ("Check") {
