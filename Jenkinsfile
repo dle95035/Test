@@ -142,9 +142,10 @@ pipeline {
 		}
         stage('Print UID') { 
 			when {
-                allOf {
-                    branch 'master'
-                    //expression { SKIP_ALL == false }
+				branch 'master'
+                //allOf {
+                //    branch 'master'
+                //    //expression { SKIP_ALL == false }
                 }
             }
             steps {
