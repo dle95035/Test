@@ -143,7 +143,7 @@ pipeline {
         stage('Print UID') { 
 			when {
                 allOf {
-                    { branch 'master' }
+                    branch 'master'
                     environment name: 'SKIP_ALL', value: false
                 }
             }
