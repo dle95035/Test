@@ -72,12 +72,24 @@ def getBuildUser() {
 }
 
 def get_cause() {
-    currentBuild.getBuildCauses().getShortDescription().toString()
+    def buildCauses = currentBuild.getBuildCauses()
+    for ( buildCause in buildCauses ) {
+        if (buildCause != null) {
+            def causeDescription = buildCause.getShortDescription()
+            echo "shortDescription: ${causeDescription}"
+            if (causeDescription.contains("Started by timer")) {
+                startedByWhat = 'timer'
+            }
+            if (causeDescription.contains("Started by user")) {
+                startedByWhat = 'user'
+            }
+        }
+    }
 }
 
 node {
 	echo "Hello world"
-	echo get_cause()
+	get_cause()
 }
 
 //pipeline {
