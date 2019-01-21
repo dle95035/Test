@@ -158,8 +158,8 @@ pipeline {
         stage('Print UID') { 
 			when {
 				allOf {
-					//not {branch 'PR-*'}
-					//not {branch 'master'}
+					not {branch 'PR-*'}
+					branch 'master'
 					expression {SKIP_ALL == 'false'} 
 				}			
 			}
