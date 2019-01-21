@@ -144,7 +144,7 @@ pipeline {
 			when {
                 allOf {
                     branch 'master'
-                    environment name: 'SKIP_ALL', value: 'false'
+                    expression { SKIP_ALL == false }
                 }
             }
             steps {
