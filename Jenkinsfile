@@ -128,10 +128,10 @@ pipeline {
     }
     stages {
 	    stage ("Check") {
-			when {
-				expression { SKIP_ALL == false }
-			}
+
 			steps {
+				echo SKIP_ALL
+				
 				// want to exit success
 				script {currentBuild.result = 'SUCCESS'} 
 				 
