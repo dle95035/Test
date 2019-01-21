@@ -60,12 +60,14 @@ def find_file(file_name){
         for (items in changeSets.items) {
             for (files in items.affectedFiles) {
 				fullFileName = files.path
-                list.add( fullFileName.substring(fullFileName.lastIndexOf("/")+1) )
+				if ( ${file_name} == fullFileName.substring(fullFileName.lastIndexOf("/")+1) A) {}
+					return true
+				}
+                //list.add( fullFileName.substring(fullFileName.lastIndexOf("/")+1) )
             }
         }
-
     }
-	return list
+	return false
 }
 
 def get_emails(culprit_list) {
