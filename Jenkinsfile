@@ -92,6 +92,7 @@ def cause() {
 	for (cause in causes) {
 		println cause.toString()
 		println cause["shortDescription"]
+		println cause["_class"]
 	}
 }
 //node {
@@ -119,7 +120,7 @@ pipeline {
         stage('Print UID') { 
             steps {
                 script {
-                   echo get_cause()
+                   //echo get_cause()
                 }
             }
         }
