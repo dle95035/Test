@@ -88,8 +88,10 @@ def get_cause() {
 }
 
 def cause() {
-	def cc = currentBuild.getBuildCauses()
-	return cc
+	def causes = currentBuild.getBuildCauses()
+	for (cause in causes) {
+		println cause.class.toString()
+	}
 }
 node {
 	echo "Hello world"
