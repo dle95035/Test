@@ -141,7 +141,12 @@ pipeline {
 			}
 		}
         stage('Print UID') { 
-			when { expression { SKIP_ALL == false } }
+			when {
+                allOf {
+                    { branch 'master' }
+                    environment name: 'SKIP_ALL', value: false
+                }
+            }
             steps {
                 script {
 					sh 'echo done'
