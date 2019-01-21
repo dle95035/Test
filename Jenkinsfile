@@ -128,6 +128,7 @@ pipeline {
     }
     stages {
 	    stage ("Check") {
+			when {  branch 'master'  }
 			steps {
 				// want to exit success
 				script {currentBuild.result = 'SUCCESS'} 
