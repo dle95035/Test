@@ -77,7 +77,6 @@ def get_cause() {
 
 node {
 	echo "Hello world"
-	echo get_cause()["_class"] 
 }
 
 //pipeline {
