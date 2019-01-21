@@ -91,7 +91,7 @@ def cause() {
 	def causes = currentBuild.getBuildCauses()
 	for (cause in causes) {
 		println cause.toString()
-		println cause.getShortDescription()
+		println cause["shortDescription"]
 	}
 }
 node {
