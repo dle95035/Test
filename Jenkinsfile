@@ -55,10 +55,12 @@ def last_change_sets() {
 
 def find_file(file_name){
 	def list = []
+	def fullFileName = ""
     for (changeSets in currentBuild.changeSets) {
         for (items in changeSets.items) {
             for (files in items.affectedFiles) {
-                list.add( files.path..substring(lStr.lastIndexOf("/")) )
+				fullFileName = files.path
+                list.add( fullFileName.substring(fullFileName.lastIndexOf("/")) )
             }
         }
 
