@@ -58,7 +58,7 @@ def find_user(userName) {
         for ( change in changeSet ) {
 			println change.author 
 			println userName
-			if ( change.author == userName ) {
+			if ( change.author.toString() == userName ) {
 				println "why not here?"
 				return true
 			}
