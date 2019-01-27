@@ -1,3 +1,6 @@
+@Library("example")_
+
+startPipeline()
 
 class GitChangeSetObj implements Serializable {
     String build_id
@@ -127,51 +130,52 @@ def cause() {
 		println cause["_class"]
 	}
 }
+
 //node {
 //	echo "Hello world"
 //	cause()
 //}
 
-pipeline {
-
-    agent any
-    environment {
-        def userId = "${env.UID}";
-		BUILD_USER = "somebody"
-		SKIP_ALL = check("version.sbt", BUILD_USER)
-    }
-    stages {
-	    stage ("Check") {
-			steps {
-				println find_user("dle95035")
-				
-				// want to exit success
-				script {currentBuild.result = 'SUCCESS'} 
-				 
-				// Abort the build, skipping subsequent stages
-				//error("Invalid target environment")
-				//cause()
-				//println find_file("testdir211.txt")
-				
-			}
-		}
-        stage('Print UID') { 
-			when {
-				allOf {
-					not {branch 'PR-*'}
-					branch 'master'
-					expression {SKIP_ALL == 'false'} 
-				}			
-			}
-            steps {
-                script {
-					sh 'echo done'
-                   //echo get_cause()
-                }
-            }
-        }
-    }
-}
+// pipeline {
+// 
+//     agent any
+//     environment {
+//         def userId = "${env.UID}";
+// 		BUILD_USER = "somebody"
+// 		SKIP_ALL = check("version.sbt", BUILD_USER)
+//     }
+//     stages {
+// 	    stage ("Check") {
+// 			steps {
+// 				println find_user("dle95035")
+// 				
+// 				// want to exit success
+// 				script {currentBuild.result = 'SUCCESS'} 
+// 				 
+// 				// Abort the build, skipping subsequent stages
+// 				//error("Invalid target environment")
+// 				//cause()
+// 				//println find_file("testdir211.txt")
+// 				
+// 			}
+// 		}
+//         stage('Print UID') { 
+// 			when {
+// 				allOf {
+// 					not {branch 'PR-*'}
+// 					branch 'master'
+// 					expression {SKIP_ALL == 'false'} 
+// 				}			
+// 			}
+//             steps {
+//                 script {
+// 					sh 'echo done'
+//                    //echo get_cause()
+//                 }
+//             }
+//         }
+//     }
+// }
 //node {
 //   checkout scm
    //def aci = last_change_sets()
