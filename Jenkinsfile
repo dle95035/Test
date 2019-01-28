@@ -17,7 +17,10 @@ def isOnlyVersionBump() {
 }
 
 def getChangeFile() {
+    
     println currentBuild.changeSets.size()
+	def changeSet = currentBuild.changeSets[0]
+	print changeSet.items.size()
 }
 
 pipeline {
