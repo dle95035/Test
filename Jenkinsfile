@@ -18,14 +18,16 @@ def isOnlyVersionBump() {
 
 def getChangeFile() {
     
-    println currentBuild.changeSets.size()	
-	def changeSet = currentBuild.changeSets[0]\
+    if ( 1 < currentBuild.changeSets.size()	) { return false }
+	if ( 1 < currentBuild.changeSets[0].items.size() ) { return false }
+	if ( 1 < currentBuild.changeSets[0].items[0].affectedFiles.size() ) { return false }
 	
-	println changeSet.items.size()
-	def item = changeSet.items[0]
-	
-	println item.affectedFiles.size()
-	
+	fullFileName = currentBuild.changeSets[0].items[0].affectedFiles[0].path
+	println fullFileName
+    if ( "version.sbt" == fullFileName.substring(fullFileName.lastIndexOf("/")+1) ) { return true }
+	else {
+		return false
+	}	
 }
 
 pipeline {
