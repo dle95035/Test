@@ -21,13 +21,10 @@ def getChangeFile() {
     if ( 1 == currentBuild.changeSets.size()	) { 
 		if ( 1 == currentBuild.changeSets[0].items.size() ) { 
 			if ( 1 == currentBuild.changeSets[0].items[0].affectedFiles.size() ) { 
-				println "affectedFiles"
 				fullFileName = currentBuild.changeSets[0].items[0].affectedFiles.first().path
-				print fullFileName
-				//println fullFileName
-				//if ( "version.sbt" == fullFileName.substring(fullFileName.lastIndexOf("/")+1) ) {
-				//	return true
-				//}
+				if ( "version.sbt" == fullFileName.substring(fullFileName.lastIndexOf("/")+1) ) {
+					return true
+				}
 			}
 		}
 	}
@@ -41,7 +38,7 @@ pipeline {
          stage('Clone repository and build tests') {
              steps {
                  sh 'ls -la'
-                 getChangeFile()
+                 println getChangeFile()
              }
          }
      }
