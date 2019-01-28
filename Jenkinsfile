@@ -17,16 +17,13 @@ def isOnlyVersionBump() {
 }
 
 def getChangeFile() {
-    
+    def fullFileName
     if ( 1 == currentBuild.changeSets.size()	) { 
 		if ( 1 == currentBuild.changeSets[0].items.size() ) { 
 			if ( 1 == currentBuild.changeSets[0].items[0].affectedFiles.size() ) { 
 				println "affectedFiles"
-				currentBuild.changeSets[0].items[0].affectedPaths.each {
-					fullFileName = $it
-					println fullFileName
-				}
-				 
+				fullFileName = currentBuild.changeSets[0].items[0].affectedFiles[0].path
+				print fullFileName
 				//println fullFileName
 				//if ( "version.sbt" == fullFileName.substring(fullFileName.lastIndexOf("/")+1) ) {
 				//	return true
