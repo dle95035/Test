@@ -24,7 +24,7 @@ def getChangeFile() {
 	println changeSet.items.size()
 	
 	def item = changeSet.items[0]
-	println item.length
+	println item
 }
 
 pipeline {
