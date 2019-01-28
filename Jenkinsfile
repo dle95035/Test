@@ -18,11 +18,11 @@ def isOnlyVersionBump() {
 
 def getChangeFile() {
     
-    if ( 1 < currentBuild.changeSets.size()	) { 
+    if ( 1 == currentBuild.changeSets.size()	) { 
 	    println "changeset"
-		if ( 1 < currentBuild.changeSets[0].items.size() ) { 
+		if ( 1 == currentBuild.changeSets[0].items.size() ) { 
 			println "items"
-			if ( 1 < currentBuild.changeSets[0].items[0].affectedFiles.size() ) { 
+			if ( 1 == currentBuild.changeSets[0].items[0].affectedFiles.size() ) { 
 				println "affectedFiles"
 				fullFileName = currentBuild.changeSets[0].items[0].affectedFiles[0].path
 				println fullFileName
