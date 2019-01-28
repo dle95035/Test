@@ -22,9 +22,9 @@ def getChangeFile() {
 	    println "changeset"
 		if ( 1 == currentBuild.changeSets[0].items.size() ) { 
 			println "items"
-			if ( 1 == currentBuild.changeSets[0].items[0].affectedFiles.size() ) { 
+			if ( 1 == currentBuild.changeSets[0].items[0].affectedPaths.size() ) { 
 				println "affectedFiles"
-				fullFileName = currentBuild.changeSets[0].items[0].affectedFiles[0].path
+				fullFileName = currentBuild.changeSets[0].items[0].affectedPaths[0]
 				println fullFileName
 				if ( "version.sbt" == fullFileName.substring(fullFileName.lastIndexOf("/")+1) ) {
 					return true
