@@ -23,8 +23,8 @@ def getChangeFile() {
 	def changeSet = currentBuild.changeSets[0]
 	println changeSet.items.size()
 	
-	def items = changeSet.items[0]
-	println items.size()
+	def item = changeSet.items[0]
+	println item.size()
 }
 
 pipeline {
