@@ -3,7 +3,7 @@ def isOnlyVersionBump() {
     // full path file name.
     def fullFileName
 	
-	if (currentBuild.changeSets !=  null) {
+	if (null != currentBuild.changeSets) {
 		def changeSets = currentBuild.changeSets
 	} else {
 		return false
