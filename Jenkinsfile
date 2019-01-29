@@ -54,7 +54,7 @@ pipeline {
          stage('Clone repository and build tests') {
              steps {
                  sh 'ls -la'
-                 println isOnlyVersionBump()
+                 println _isOnlyVersionBump()
              }
          }
      }
