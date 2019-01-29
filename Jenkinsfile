@@ -6,6 +6,10 @@ def isOnlyVersionBump() {
         def items = changeSets[0].items
         def affectedFiles = items[0].affectedFiles
 
+		println changeSets.size()
+		println items.size()
+		println affectedFiles.size()
+		
         // single changeSet, single item, single affectedFile
         if ( 1 == changeSets.size() ) {
             if ( 1 == items.size() ) {
