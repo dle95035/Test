@@ -1,30 +1,34 @@
 def isOnlyVersionBump() {
-    try {
-        // full path file name.
-        def fullFileName
-        def changeSets = currentBuild.changeSets
-        def items = changeSets[0].items
-        def affectedFiles = items[0].affectedFiles
 
-		println changeSets.size()
-		println items.size()
-		println affectedFiles.size()
-		
-        // single changeSet, single item, single affectedFile
-        if ( 1 == changeSets.size() ) {
-            if ( 1 == items.size() ) {
-                if ( 1 == affectedFiles.size() ) {
-                    fullFileName = affectedFiles.first().path
-                    if ( "version.sbt" == fullFileName.substring(fullFileName.lastIndexOf("/")+1) ) {
-                        return true
-                    }
-                }
+    // full path file name.
+    def fullFileName
+	
+	if (currentBuild.changeSets) {
+		def changeSets = currentBuild.changeSets
+	} else {
+		return false
+	}
+    if (changeSets[0].items) {
+		def items = changeSets[0].items
+	} else {
+		return false
+	}
+	if (items[0].affectedFiles) {
+		def affectedFiles = items[0].affectedFiles
+	} else {
+		return false
+	}
+
+    // single changeSet, 2 items , single affectedFile
+    if ( 1 == changeSets.size() ) {
+        if ( 1 == affectedFiles.size() ) {
+            fullFileName = affectedFiles.first().path
+            if ( "version.sbt" == fullFileName.substring(fullFileName.lastIndexOf("/")+1) ) {
+                return true
             }
         }
-        return false
-    } catch (Exception e) {
-        return false
     }
+    return false
 }
 
 
