@@ -31,7 +31,7 @@ def isOnlyVersionBump() {
     return false
 }
 
-
+///
 def _isOnlyVersionBump() {
     def fullFileName
     if ( 1 == currentBuild.changeSets.size() ) { 
