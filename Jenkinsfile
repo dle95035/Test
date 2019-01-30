@@ -34,7 +34,9 @@ def isOnlyVersionBump() {
 ///
 def _isOnlyVersionBump() {
     def fullFileName
-	println null
+	if ( 2 < null ) {
+		println "hello"
+	}
     if ( 1 == currentBuild.changeSets.size() ) { 
 		if ( 2 >= currentBuild.changeSets[0].items.size() ) { 
 			if ( 1 == currentBuild.changeSets[0].items[0].affectedFiles.size() ) { 
