@@ -66,6 +66,10 @@ def _cause() {
     }
 }
 
+def user() {
+	def specificCause = currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)
+    println specificCause
+}
 pipeline {
     agent any
 
@@ -75,9 +79,9 @@ pipeline {
                  sh 'ls -la'
 				 _cause()
                  //println _isOnlyVersionBump()
+				 user()
 
-				def specificCause = currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)
-				println specificCause
+				
              }
          }
      }
