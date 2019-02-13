@@ -113,4 +113,10 @@ pipeline {
 			}
          }
      }
+	 post {
+		always {
+			echo 'this is it'
+		}
+		
+	 }
 }
