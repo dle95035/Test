@@ -94,9 +94,10 @@ pipeline {
 		stage ('Check') {
           steps {	
 			script {
-			if (isGitHubPush()) {
-				exit 0
-			}
+				if (isGitHubPush()) {
+					currentBuild.result = 'SUCCESS'
+					exit 0
+				}
 			}
 		  }
 		}
