@@ -88,8 +88,10 @@ def merge() {
 
 pipeline {
     agent any
-
-     stages {
+	if (isGitHubPush()) {
+		return
+	}
+    stages {
          stage('Clone repository and build tests') {
             steps {
                  sh 'ls -la'
