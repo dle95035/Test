@@ -92,9 +92,11 @@ pipeline {
     stages {
 	
 		stage ('Check') {
-          steps {		
+          steps {	
+			script {
 			if (isGitHubPush()) {
 				exit 0
+			}
 			}
 		  }
 		}
