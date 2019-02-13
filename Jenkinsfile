@@ -92,9 +92,11 @@ pipeline {
     stages {
 	
 		stage ('Check') {
+          steps {		
 			if (isGitHubPush()) {
 				exit 0
 			}
+		  }
 		}
          stage('Clone repository and build tests') {
             steps {
