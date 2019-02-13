@@ -62,7 +62,7 @@ def _cause() {
     def causes = currentBuild.rawBuild.getCauses()
     for (cause in causes) {
         println cause.toString()
-        println cause["shortDescription"]
+        //println cause["shortDescription"]
     }
 }
 
