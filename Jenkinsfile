@@ -70,6 +70,12 @@ def user() {
 	def specificCause = currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)
     println specificCause
 }
+
+def merge() {
+	def specificCause = currentBuild.rawBuild.getCause(hudson.model.SCMTrigger$SCMTriggerCause)
+    println specificCause
+}
+
 pipeline {
     agent any
 
@@ -79,9 +85,8 @@ pipeline {
                  sh 'ls -la'
 				 _cause()
                  //println _isOnlyVersionBump()
-				 user()
-				println BUILD_CAUSE
-				
+				user()
+				merge()
              }
          }
      }
