@@ -86,6 +86,8 @@ def merge() {
     println specificCause
 }
 
+// every 5 minutes
+// H/5 * * * *
 pipeline {
     agent any
 	environment {
@@ -110,7 +112,7 @@ pipeline {
             steps {
                  sh 'ls -la'
 				 _cause()
-			}
+			} 
          }
      }
 	 post {
