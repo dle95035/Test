@@ -1,3 +1,4 @@
+
 def isOnlyVersionBump() {
 
     // full path file name.
@@ -74,6 +75,7 @@ pipeline {
                  sh 'ls -la'
 				 _cause()
                  //println _isOnlyVersionBump()
+				 println BUILD_CAUSE
              }
          }
      }
