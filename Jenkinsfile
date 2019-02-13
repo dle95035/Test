@@ -85,8 +85,8 @@ pipeline {
                  sh 'ls -la'
 				 _cause()
                  //println _isOnlyVersionBump()
-				user()
-				merge()
+				//user()
+				//merge()
              }
          }
      }
