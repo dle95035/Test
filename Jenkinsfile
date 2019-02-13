@@ -57,6 +57,14 @@ def cause() {
     }
 }
 
+def _cause() {
+    def causes = currentBuild.rawBuild.getCauses()
+    for (cause in causes) {
+        println cause.toString()
+        println cause["shortDescription"]
+    }
+}
+
 pipeline {
     agent any
 
@@ -64,7 +72,7 @@ pipeline {
          stage('Clone repository and build tests') {
              steps {
                  sh 'ls -la'
-				 cause()
+				 _cause()
                  //println _isOnlyVersionBump()
              }
          }
