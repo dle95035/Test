@@ -91,11 +91,12 @@ pipeline {
 
      stages {
          stage('Clone repository and build tests') {
-             steps {
+            steps {
                  sh 'ls -la'
 				 _cause()
                  //println _isOnlyVersionBump()
 				println isGitHubPush()
+			}
          }
      }
 }
