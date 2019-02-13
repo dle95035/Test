@@ -117,14 +117,13 @@ pipeline {
      }
 	 // https://jenkins.io/doc/pipeline/tour/post/
 	 post {
-		script {
-			if (SKIP_ALL == 'true') {
-				return
-			}
-		}
+		
 		always {
-			when {
-			expression {SKIP_ALL == 'false'}
+			script {
+				if (SKIP_ALL == 'true') {
+					echo 'do somthing here'
+					return
+				}
 			}
 			echo 'this is it'
 		}
