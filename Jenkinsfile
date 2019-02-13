@@ -91,7 +91,7 @@ pipeline {
 	
     stages {
 	
-	script {}
+	script {
 		if (isGitHubPush()) {
 			return
 		}
