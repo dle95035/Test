@@ -99,7 +99,7 @@ pipeline {
 			}
 			steps {	
 				script {
-					sh 'echo hello')
+					sh 'echo hello'
 				}
 			}
 		}
