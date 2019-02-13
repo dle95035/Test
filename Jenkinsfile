@@ -116,6 +116,9 @@ pipeline {
          }
      }
 	 post {
+		when {
+				expression {SKIP_ALL == 'false'}
+		}
 		always {
 			echo 'this is it'
 		}
