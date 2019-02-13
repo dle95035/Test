@@ -69,7 +69,7 @@ def _cause() {
 def isGitHubPush() {
     def causes = currentBuild.rawBuild.getCauses()
     for (cause in causes) {
-        if (cause["shortDescription"].contains("GitHubPushCause")) {
+        if (cause.toString().contains("GitHubPushCause")) {
 			return true
 		}
     }
