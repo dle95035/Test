@@ -80,7 +80,7 @@ pipeline {
 				 _cause()
                  //println _isOnlyVersionBump()
 				 user()
-
+				println BUILD_CAUSE
 				
              }
          }
