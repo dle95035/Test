@@ -95,7 +95,8 @@ pipeline {
           steps {	
 			script {
 				if (isGitHubPush()) {
-					currentBuild.result = 'ABORTED'
+					//currentBuild.result = 'ABORTED'
+					throw new Exception()
 				}
 			}
 		  }
