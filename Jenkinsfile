@@ -75,7 +75,10 @@ pipeline {
                  sh 'ls -la'
 				 _cause()
                  //println _isOnlyVersionBump()
-				 println BUILD_CAUSE
+				 script {
+					echo '${BUILD_CAUSE}'
+				 }
+				 //println BUILD_CAUSE
              }
          }
      }
