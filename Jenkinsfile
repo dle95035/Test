@@ -48,6 +48,15 @@ def _isOnlyVersionBump() {
 	return false
 }
 
+def cause() {
+    def causes = currentBuild.getBuildCauses()
+    for (cause in causes) {
+        println cause.toString()
+        println cause["shortDescription"]
+        println cause["_class"]
+    }
+}
+
 pipeline {
     agent any
 
@@ -55,7 +64,8 @@ pipeline {
          stage('Clone repository and build tests') {
              steps {
                  sh 'ls -la'
-                 println _isOnlyVersionBump()
+				 cause()
+                 //println _isOnlyVersionBump()
              }
          }
      }
