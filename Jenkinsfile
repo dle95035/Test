@@ -75,10 +75,9 @@ pipeline {
                  sh 'ls -la'
 				 _cause()
                  //println _isOnlyVersionBump()
-				 script {
-					echo '${BUILD_CAUSE}'
-				 }
-				 //println BUILD_CAUSE
+
+				def specificCause = currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)
+				println specificCause
              }
          }
      }
