@@ -115,8 +115,13 @@ pipeline {
 			} 
          }
      }
+	 // https://jenkins.io/doc/pipeline/tour/post/
 	 post {
-		
+		script {
+			if (SKIP_ALL == 'true') {
+				return
+			}
+		}
 		always {
 			when {
 			expression {SKIP_ALL == 'false'}
