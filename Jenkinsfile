@@ -88,25 +88,28 @@ def merge() {
 
 pipeline {
     agent any
-	
+	environment {
+		SKIP_ALL = isGitHubPush()
+	}
     stages {
 	
 		stage ('Check') {
-          steps {	
-			script {
-				if (isGitHubPush()) {
-					//currentBuild.result = 'ABORTED'
-					throw new Exception()
+			when {
+				expression {SKIP_ALL == 'false'}
+			}
+			steps {	
+				script {
+					sh 'echo hello')
 				}
 			}
-		  }
 		}
-         stage('Clone repository and build tests') {
+        stage('Clone repository and build tests') {
+			when {
+				expression {SKIP_ALL == 'false'}
+			}
             steps {
                  sh 'ls -la'
 				 _cause()
-                 //println _isOnlyVersionBump()
-				println isGitHubPush()
 			}
          }
      }
