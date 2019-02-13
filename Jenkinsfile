@@ -66,6 +66,16 @@ def _cause() {
     }
 }
 
+def isGitHubPush() {
+    def causes = currentBuild.rawBuild.getCauses()
+    for (cause in causes) {
+        if cause["shortDescription"].contains("GitHubPushCause") {
+			return true
+		}
+    }
+	return false
+}
+
 def user() {
 	def specificCause = currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)
     println specificCause
@@ -85,9 +95,7 @@ pipeline {
                  sh 'ls -la'
 				 _cause()
                  //println _isOnlyVersionBump()
-				//user()
-				//merge()
-             }
+				println isGitHubPush()
          }
      }
 }
