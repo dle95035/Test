@@ -91,9 +91,11 @@ pipeline {
 	
     stages {
 	
+	script {}
 		if (isGitHubPush()) {
 			return
 		}
+	}
          stage('Clone repository and build tests') {
             steps {
                  sh 'ls -la'
