@@ -86,6 +86,15 @@ def merge() {
     println specificCause
 }
 
+def isGitHubPush() {
+    def causes = currentBuild.rawBuild.getCauses()
+    for (cause in causes) {
+        if (cause.toString().contains("GitHubPushCause")) {
+			return true
+		}
+    }
+	return false
+}
 // every 5 minutes
 // H/5 * * * *
 pipeline {
