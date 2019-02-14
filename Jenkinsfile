@@ -96,6 +96,13 @@ def readProp(fileName, key) {
 	return ""
 }
 
+def sendMails() {
+	receipients = readProp("statics.properties", "receipients").split()
+	for (receipient in receipients) {
+		println receipient
+	}	
+}
+
 // every 5 minutes
 // H/5 * * * *
 pipeline {
@@ -109,10 +116,7 @@ pipeline {
 				sh 'ls -la'
 				script {
 					println readProp("statics.properties", "server1")
-					receipients = readProp("statics.properties", "receipients").split()
-					for (receipient in receipients) {
-						println receipient
-					}
+					sendMails()
 				}
 				
 			}
