@@ -88,9 +88,9 @@ def isGitHubPush() {
 }
 
 def readProp(fileName, key) {
-    Properties props = new Properties()
-	File propsFile = new File(fileName)
-	return props.load(propsFile.newDataInputStream()).getProperty(key)
+	for (String line : readFile(fileName).split("\r?\n")) {
+		println line
+	}
 }
 
 // every 5 minutes
