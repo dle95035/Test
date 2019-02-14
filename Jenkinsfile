@@ -109,7 +109,7 @@ pipeline {
 				sh 'ls -la'
 				script {
 					println readProp("statics.properties", "server1")
-					//props = readProperties file: 'statics.properties'
+					println readProp("statics.properties", "receipients")
 				}
 				
 			}
