@@ -109,7 +109,7 @@ pipeline {
 				sh 'ls -la'
 				script {
 					println readProp("statics.properties", "server1")
-					receipients = readProp("statics.properties", "receipients")
+					receipients = readProp("statics.properties", "receipients").split()
 					for (receipient in receipients) {
 						println receipient
 					}
