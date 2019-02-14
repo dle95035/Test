@@ -99,7 +99,7 @@ def readProp(fileName, key) {
 def sendMails() {
 	receipients = readProp("statics.properties", "receipients").split()
 	for (receipient in receipients) {
-		println "{receipient}@exabeam.com"
+		println "${receipient}@exabeam.com"
 	}	
 }
 
