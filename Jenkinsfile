@@ -88,7 +88,7 @@ def isGitHubPush() {
 }
 
 def readProp(fileName, key) {
-    println fileName, key
+    println fileName
 	def props = readProperties file: fileName
 	return props[key]
 }
