@@ -104,7 +104,10 @@ pipeline {
 	    stage('Read') {
 			steps {
 				sh 'ls -la'
-				println readProp("statics.properties", "server1")
+				script {
+					println readProp("statics.properties", "server1")
+				}
+				
 			}
 		}
 		stage ('Check') {
