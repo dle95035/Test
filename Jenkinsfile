@@ -86,6 +86,12 @@ def isGitHubPush() {
     }
 	return false
 }
+
+def readProp(fileName, key) {
+	def props = readProperties  file: fileName
+	return props[key]
+}
+
 // every 5 minutes
 // H/5 * * * *
 pipeline {
@@ -94,7 +100,12 @@ pipeline {
 		SKIP_ALL = isGitHubPush()
 	}
     stages {
-	
+	    state('Read') {
+			steps {
+				sh 'ls -la'
+				println readProp("statics.properties", "server1")
+			}
+		}
 		stage ('Check') {
 			when {
 				expression {SKIP_ALL == 'false'}
