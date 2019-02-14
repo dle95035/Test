@@ -100,7 +100,7 @@ pipeline {
 		SKIP_ALL = isGitHubPush()
 	}
     stages {
-	    state('Read') {
+	    stage('Read') {
 			steps {
 				sh 'ls -la'
 				println readProp("statics.properties", "server1")
