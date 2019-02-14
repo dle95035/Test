@@ -89,8 +89,11 @@ def isGitHubPush() {
 
 def readProp(fileName, key) {
 	for (String line : readFile(fileName).split("\r?\n")) {
-		println line
+		if (line.contains(key)) {
+			return line.split('=')[1]
+		}
 	}
+	return ""
 }
 
 // every 5 minutes
