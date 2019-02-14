@@ -88,9 +88,9 @@ def isGitHubPush() {
 }
 
 def readProp(fileName, key) {
-    println fileName
-	def props = readProperties file: fileName
-	return props[key]
+    Properties props = new Properties()
+	File propsFile = new File(fileName)
+	return props.load(propsFile.newDataInputStream()).getProperty(key)
 }
 
 // every 5 minutes
@@ -105,8 +105,8 @@ pipeline {
 			steps {
 				sh 'ls -la'
 				script {
-					//println readProp("statics.properties", "server1")
-					props = readProperties file: 'statics.properties'
+					println readProp("statics.properties", "server1")
+					//props = readProperties file: 'statics.properties'
 				}
 				
 			}
