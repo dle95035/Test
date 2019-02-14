@@ -103,8 +103,8 @@ def sendMails() {
 	}	
 }
 
-def target_url = readProp("statics.properties", "target").split()[0]
-def target_pwd = readProp("statics.properties", "target").split()[1]
+//def target_url = readProp("statics.properties", "target").split()[0]
+//def target_pwd = readProp("statics.properties", "target").split()[1]
 
 // every 5 minutes
 // H/5 * * * *
@@ -118,7 +118,7 @@ pipeline {
 			steps {
 				sh 'ls -la'
 				script {
-					println target_url
+					println readProp("statics.properties", "target").split()[0]
 					println target_pwd
 					sendMails()
 				}
