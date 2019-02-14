@@ -105,7 +105,8 @@ pipeline {
 			steps {
 				sh 'ls -la'
 				script {
-					println readProp("statics.properties", "server1")
+					//println readProp("statics.properties", "server1")
+					props = readProperties file: 'statics.properties'
 				}
 				
 			}
