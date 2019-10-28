@@ -1,3 +1,2 @@
 I want to trigger the build
 
-trigger it
