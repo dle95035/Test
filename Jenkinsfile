@@ -163,9 +163,9 @@ def main() {
 	 }
 }
 
-pipeline {
+
 	node('Build') {
 		echo "this is brand new"
 	}
 
-}
+
