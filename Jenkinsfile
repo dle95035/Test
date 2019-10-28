@@ -109,7 +109,8 @@ def sendMails() {
 
 // every 5 minutes
 // H/5 * * * *
-pipeline {
+//pipeline {
+def main() {
     agent any
 	environment {
 		SKIP_ALL = isGitHubPush()
@@ -160,4 +161,11 @@ pipeline {
 		}
 		
 	 }
+}
+
+pipeline {
+	node('Build') {
+		echo "this is brand new"
+	}
+
 }
