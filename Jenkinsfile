@@ -164,8 +164,8 @@ def main() {
 }
 
 
-	node('Build') {
+node {
 		echo "this is brand new"
-	}
+}
 
 
