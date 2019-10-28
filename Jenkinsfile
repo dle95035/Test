@@ -166,6 +166,7 @@ def main() {
 
 node ('Test-QA') {
 		echo "this is brand new"
+		sh "ls -la"
 }
 
 
