@@ -1,6 +1,2 @@
 this a test
 
-abc
-def
-abc
-abc
