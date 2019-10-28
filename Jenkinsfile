@@ -165,6 +165,7 @@ def main() {
 
 
 node ('Test-QA') {
+	checkout scm
 		echo "this is brand new"
 		sh "ls -la"
 }
