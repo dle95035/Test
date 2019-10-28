@@ -164,7 +164,7 @@ def main() {
 }
 
 
-node {
+node ('Test-QA') {
 		echo "this is brand new"
 }
 
