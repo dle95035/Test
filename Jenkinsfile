@@ -173,7 +173,7 @@ def main() {
 
 
 pipeline {
-    agent any
+    agent {label 'Test-QA' }
 	environment {
         GIT_CREDS = credentials('402a62c6-3d70-4d77-b092-816438a14ff5')
     }
