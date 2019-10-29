@@ -164,10 +164,26 @@ def main() {
 }
 
 
-node ('Test-QA') {
-	checkout scm
-		echo "this is brand new"
-		sh "ls -la"
+// node ('Test-QA') {
+// 	
+// 	echo "this is brand new"
+// 	sh "ls -la"
+// }
+
+
+
+pipeline {
+    agent { label 'Test-QA' }
+    stages {
+        stage('Example Build') {
+            steps {
+                sh '''
+					echo Hello world
+					ls -la
+				'''
+            }
+        }
+    }
 }
 
 
