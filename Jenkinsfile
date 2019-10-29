@@ -188,6 +188,11 @@ pipeline {
 					echo Hello world
 					ls -la
 				'''
+				script {
+					timeout(time: 4, unit: 'HOURS') {
+                        input message: 'Approve EXIT?'
+                    }
+				}
             }
         }
     }
