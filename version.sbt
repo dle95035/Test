@@ -1,18 +1,10 @@
-version = 1.2.0-SNAPSHOT
+two
+test
 abc
 abc
 abc
 abc
 abc
 abc
-abc
-abc
-abc
-abc
-abc
-abc
-abc
-abc
-abc
-abc
-abc
+one
+two

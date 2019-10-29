@@ -1,191 +1,171 @@
 
-class GitChangeSetObj implements Serializable {
-    String build_id
-    String commit_id
-    String author
-    String email
-    String comment
+def isOnlyVersionBump() {
 
-    GitChangeSetObj(build_id, commit_id, author, email, comment){
-        this.build_id = build_id
-        this.commit_id = commit_id
-        this.author = author
-        this.email = email
-        this.comment = comment
-    }
+    // full path file name.
+    def fullFileName
+	
+	if (null != currentBuild.changeSets) {
+		def changeSets = currentBuild.changeSets
+	} else {
+		return false
+	}
+    if (changeSets[0].items) {
+		def items = changeSets[0].items
+	} else {
+		return false
+	}
+	if (items[0].affectedFiles) {
+		def affectedFiles = items[0].affectedFiles
+	} else {
+		return false
+	}
 
-}
-
-@NonCPS
-def getCulprits(build){
-    culprits = []
-
-    if(build.properties.changeSets[0] != null){
-       for (changeSet in build.properties.changeSets){
-          for (change in changeSet){
-              GitChangeSetObj git_change_set = new GitChangeSetObj(
-                  build.displayName.toString(),
-                  change.id,
-                  change.author,
-                  change.authorEmail,
-                  change.comment
-              )
-              culprits.add(git_change_set)
-              //println "author " + change.author
-          }
-       }
-    }
-
-    return culprits
-}
-
-@NonCPS
-def last_change_sets() {
-    def list = []
-    for (changeSets in currentBuild.changeSets) {
-        for (items in changeSets.items) {
-            for (files in items.affectedFiles) {
-                list.add( files.path.split('/')[0] )
+    // single changeSet, 2 items , single affectedFile
+    if ( 1 == changeSets.size() ) {
+        if ( 1 == affectedFiles.size() ) {
+            fullFileName = affectedFiles.first().path
+            if ( "version.sbt" == fullFileName.substring(fullFileName.lastIndexOf("/")+1) ) {
+                return true
             }
-        }
-
-    }
-    return list
-}
-
-def find_user(userName) {
-    for (changeSet in currentBuild.changeSets) {
-        for ( change in changeSet ) {
-			if ( change.author.toString() == userName ) {
-				return true
-			}
         }
     }
     return false
 }
 
-def get_file_name(fullFileName) {
-	return fullFileName.substring(fullFileName.lastIndexOf("/")+1)
-}
-
-def find_file(file_name){
-    for (changeSet in currentBuild.changeSets) {
-        for (item in changeSet.items) {
-            for (file in item.affectedFiles) {
-				if ( file_name == get_file_name(file.path) ) {
+///
+def _isOnlyVersionBump() {
+    def fullFileName
+	
+    if ( 1 == currentBuild.changeSets.size() ) { 
+		if ( 2 >= currentBuild.changeSets[0].items.size() ) { 
+			if ( 1 == currentBuild.changeSets[0].items[0].affectedFiles.size() ) { 
+				fullFileName = currentBuild.changeSets[0].items[0].affectedFiles.first().path
+				if ( "version.sbt" == fullFileName.substring(fullFileName.lastIndexOf("/")+1) ) {
 					return true
 				}
-            }
-        }
+			}
+		}
+	}
+	return false
+}
+
+def cause() {
+    def causes = currentBuild.getBuildCauses()
+    for (cause in causes) {
+        println cause.toString()
+        println cause["shortDescription"]
+        println cause["_class"]
+    }
+}
+
+def _cause() {
+    def causes = currentBuild.rawBuild.getCauses()
+    for (cause in causes) {
+        println cause.toString()
+        //println cause["shortDescription"]
+    }
+}
+
+
+def user() {
+	def specificCause = currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)
+    println specificCause
+}
+
+def merge() {
+	def specificCause = currentBuild.rawBuild.getCause(hudson.model.SCMTrigger$SCMTriggerCause)
+    println specificCause
+}
+
+def isGitHubPush() {
+    def causes = currentBuild.rawBuild.getCauses()
+    for (cause in causes) {
+        if (cause.toString().contains("GitHubPushCause")) {
+			return true
+		}
     }
 	return false
 }
 
-def check(fileName, userName) {
-	return (find_file(fileName) || find_user(userName))
-}
-
-def get_emails(culprit_list) {
-  def list = []
-  for (culprit in culprit_list){ 
-    list.add(culprit.author + ":" + culprit.email )
-  } 
-  return list
-}
-
-@NonCPS
-def get_userId() {
-    return currentBuild.getBuildCauses()
-}
-
-@NonCPS
-def getBuildUser() {
-    return currentBuild.rawBuild.getBuildCauses(Cause.UserIdCause).getUserId()
-}
-
-def get_cause() {
-    def buildCauses = currentBuild.rawBuild.getCauses()
-    for ( buildCause in buildCauses ) {
-        if (buildCause != null) {
-            def causeDescription = buildCause.getShortDescription()
-            echo "shortDescription: ${causeDescription}"
-            if (causeDescription.contains("Started by timer")) {
-                startedByWhat = 'timer'
-            }
-            if (causeDescription.contains("Started by user")) {
-                startedByWhat = 'user'
-            }
-        }
-    }
-}
-
-def cause() {
-	def causes = currentBuild.getBuildCauses()
-	for (cause in causes) {
-		println cause.toString()
-		println cause["shortDescription"]
-		println cause["_class"]
+def readProp(fileName, key) {
+	for (String line : readFile(fileName).split("\r?\n")) {
+		if (line.contains(key)) {
+			return line.split('=')[1]
+		}
 	}
+	return ""
 }
-//node {
-//	echo "Hello world"
-//	cause()
-//}
 
-pipeline {
+def sendMails() {
+    if (SKIP_ALL == 'true') { return }
+	receipients = readProp("statics.properties", "receipients").split()
+	for (receipient in receipients) {
+		println "${receipient}@exabeam.com"
+	}	
+}
 
+//def target_url = readProp("statics.properties", "target").split()[0]
+//def target_pwd = readProp("statics.properties", "target").split()[1]
+
+// every 5 minutes
+// H/5 * * * *
+//pipeline {
+def main() {
     agent any
-    environment {
-        def userId = "${env.UID}";
-		BUILD_USER = "somebody"
-		SKIP_ALL = check("version.sbt", BUILD_USER)
-    }
+	environment {
+		SKIP_ALL = isGitHubPush()
+	}
     stages {
-	    stage ("Check") {
+	    stage('Read') {
 			steps {
-				println find_user("dle95035")
-				
-				// want to exit success
-				script {currentBuild.result = 'SUCCESS'} 
-				 
-				// Abort the build, skipping subsequent stages
-				//error("Invalid target environment")
-				//cause()
-				//println find_file("testdir211.txt")
+				sh 'ls -la'
+				script {
+					println readProp("statics.properties", "target").split()[0]
+					//println target_pwd
+					sendMails()
+				}
 				
 			}
 		}
-        stage('Print UID') { 
+		stage ('Check') {
 			when {
-				allOf {
-					not {branch 'PR-*'}
-					branch 'master'
-					expression {SKIP_ALL == 'false'} 
-				}			
+				expression {SKIP_ALL == 'false'}
+			}
+			steps {	
+				script {
+					sh 'echo hello'
+				}
+			}
+		}
+        stage('Clone repository and build tests') {
+			when {
+				expression {SKIP_ALL == 'false'}
 			}
             steps {
-                script {
-					sh 'echo done'
-                   //echo get_cause()
-                }
-            }
-        }
-    }
+                 sh 'ls -la'
+				 _cause()
+			} 
+         }
+     }
+	 // https://jenkins.io/doc/pipeline/tour/post/
+	 post {
+		
+		always {
+			script {
+				if (SKIP_ALL == 'true') {
+					echo 'do somthing here'
+					return
+				}
+			}
+			echo 'this is it'
+		}
+		
+	 }
 }
-//node {
-//   checkout scm
-   //def aci = last_change_sets()
-   //println aci
 
-//   println "Culprits list:"
-//   def cpl = getCulprits(currentBuild)
-//   println get_emails(cpl)
-   
-//   echo 'user id:'
-//   echo currentBuild.getBuildCauses(hudson.model.Cause$UserIdCause)
-   
-//   sh 'echo Done'
-//   sh 'ls -la'
-   
-//}
+
+node {
+		echo "this is brand new"
+}
+
 
