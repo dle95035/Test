@@ -181,6 +181,7 @@ pipeline {
     stages {
         stage('Example Build') {
             steps {
+				checkout scm
                 sh '''
 					echo ${GIT_CREDS_USR} ${GIT_CREDS_PSW} > .testcreds
 					cat .testcreds
