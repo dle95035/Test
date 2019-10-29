@@ -175,7 +175,7 @@ def main() {
 pipeline {
     agent any
 	environment {
-        GIT_CREDS = credentials('git token')
+        GIT_CREDS = credentials('402a62c6-3d70-4d77-b092-816438a14ff5')
     }
     stages {
         stage('Example Build') {
