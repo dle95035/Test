@@ -173,11 +173,15 @@ def main() {
 
 
 pipeline {
-    agent { label 'Test-QA' }
+    agent any
+	environment {
+        GIT_CREDS = credentials('git token')
+    }
     stages {
         stage('Example Build') {
             steps {
                 sh '''
+					echo ${GIT_CREDS_USR}:${GIT_CREDS_PSW}
 					echo Hello world
 					ls -la
 				'''
