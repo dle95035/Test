@@ -183,6 +183,7 @@ pipeline {
                 sh '''
 					echo ${GIT_CREDS_USR} ${GIT_CREDS_PSW} > .testcreds
 					cat .testcreds
+					cat /etc/os-release
 					echo Hello world
 					ls -la
 				'''
