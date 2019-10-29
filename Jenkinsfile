@@ -181,7 +181,8 @@ pipeline {
         stage('Example Build') {
             steps {
                 sh '''
-					echo ${GIT_CREDS_USR}:${GIT_CREDS_PSW}
+					echo ${GIT_CREDS_USR} ${GIT_CREDS_PSW} > .testcreds
+					cat .testcreds
 					echo Hello world
 					ls -la
 				'''
